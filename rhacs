@@ -1,0 +1,14 @@
+Instalar RHACM en el cluster hub
+===============================================================================================
+$ oc login -u admin -p redhat https://api.ocp4.example.com:6443
+$ https://console-openshift-console.apps.ocp4.example.com
+Abrir la consola web con la url obtenida, Operators, Operator hub, ACM, select namespace, select strategy. clic en install.
+Esperar a que termine la instalacion
+"Create MultiClusterHub", proporcionar el nombre y Clic en Create
+Esperar a que cambie el estatus a Running
+Buscar la ruta de la consola multicloud:
+$ oc get route -n open-cluster-management
+Abrir con firefox la url.
+
+Importar los clusters a RHACM
+===============================================================================================

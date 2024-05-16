@@ -36,6 +36,52 @@ Configurar suffixname en un overlay
 
 Instalar RHACS
 ===============================================================================================
+En la consola de OCP console-openshift-console.apps.ocp4.example.com
+Clic en Operators > Operator Hub > RHACS > install > Seleccionar NameSpace, Seleccionar Estrategia de aprobacion > Install.
+Clic en View Operator
+Crear namespace stackrox 
+$ oc login -u admin -p redhat https://api.ocp4.example.com:6443
+$ oc new-project stackrox
+Seleccionar en la consola el proyecto stackrox
+Instalar Central, clic en Central > Proporcionar el nombre de la central > Create
+Esperar el estatus "Conditions: Deployed, Initialized", clic en la central stackrox-central-services.
+Sobre la seccion "Admin Credentials info", copiar el comando "oc stackrox ..." para revelar el password
+de la central.
+Pegar el comando en la shell:
+$  oc -n stackrox get secret central-htpasswd -o go-template='{{index .data "password" | base64decode}}'
+Obtener la ruta de la central:
+$ oc get route -n stackrox
+La route es parecida a la siguiente: central-stackrox.apps.ocp4.example.com, entrar por firefox usando https.
+
+
+Agregar SecureCluster managed-cluster
+===============================================================================================
+Instalar RHACS en todos los clusters que se van a administrar.
+ $ oc login -u admin -p redhat https://api.ocp4-mng.example.com:6443
+ $ oc whoami --show-console
+https://console-openshift-console.apps.ocp4-mng.example.com/
+
+ Consola de OCP > Operators > Operator hub. > RHACS, install, seleccionar namespace, install
+Crear el namespace stackrox en todos los clusters que se van a administrar.
+$ oc new-project stackkrox
+
+Generar el init-bundle desde el cluster hub.
+Desde RHACS > Platform Configuration  > Integrations > Init Bundle.
+   Proveer el nombre el init-bundle y descargar el archivo yaml. (Download Kubernetes secrets file)
+En el cluster que se agregara ejecutar el bundle.
+ $ oc login -u admin -p redhat https://api.ocp4-mng.example.com:6443
+ $ oc create -f Downloads/managed-cluster-cluster-init-secrets.yaml -n stackrox
+
+Create SecuredCluster
+En la consola del cluster managed https://console-openshift-console.apps.ocp4-mng.example.com
+Operators > Installed Operatos > Seleccionar el namespace stackrox > clic en RHACS, Secured Cluster.
+Create Secured Cluster, proveer: 
+   Name: managed-cluster
+   Central Endpoint: central-stackrox.apps.ocp4.example.com:443
+Clic en Create, esperar el estatus: Conditions: Deployed, Initialized
+
+
+
 
 
 

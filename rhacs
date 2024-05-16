@@ -12,3 +12,30 @@ Abrir con firefox la url.
 
 Importar los clusters a RHACM
 ===============================================================================================
+Clic en Infastructure > Clusters > Import Cluster > Name: managed-cluster > Save config and Generate Code, "Copy Command"
+Login in cluster managed:
+$ ooc login -u admin -p redhat https://api.ocp4-mng.example.com:6443
+Pegar el codigo pegado que genera los recursos para importar el cluster a RHACM
+Revisar en Infastructure > Clusters que el cluster managed fue agregado, debe aparecer en Ready.
+
+Definir un cluster set development y uno de desarroollo.
+===============================================================================================
+Colocar un cluster en cada clusterset
+Configurar permisos para dos usuarios
+
+Politica paara configurar LimitRange en un proyecto.
+===============================================================================================
+
+Implementar una applicacion que esta en un repo git, en el cluster hub.
+===============================================================================================
+
+Modificar la aplicacion con kustomize
+===============================================================================================
+Agregar un router en un overlay
+Configurar suffixname en un overlay
+
+Instalar RHACS
+===============================================================================================
+
+
+

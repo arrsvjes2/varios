@@ -1,0 +1,15 @@
+- Agregar un dispositivo nuevo /mnt/ring2 al swift
+- Agregar volumen manila
+     Crear usuario para autenticarse
+- Activar trace en rabbitmq y crear un usuario que tenga permisos para leer.
+- Desde el principio corregir el flavor m1.petite.
+- Personalizar una imagen.
+   instalar httpd, iniciar el servicio, crear un archivo index.html
+- rotate fernet keys
+- backup
+- Crear container y agregar archivos.
+- Crear volumes y adjuntarlos
+- Crear una red externa y su subnet.
+- Validar la llave webkey
+- Crear el source para administrar el proyecto Engineering
+- Configurar IDM con un nuevo dominio.

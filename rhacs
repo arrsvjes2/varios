@@ -18,10 +18,14 @@ $ ooc login -u admin -p redhat https://api.ocp4-mng.example.com:6443
 Pegar el codigo pegado que genera los recursos para importar el cluster a RHACM
 Revisar en Infastructure > Clusters que el cluster managed fue agregado, debe aparecer en Ready.
 
-Definir un cluster set development y uno de desarroollo.
+Definir un cluster set 
 ===============================================================================================
-Colocar un cluster en cada clusterset
+Crear dos clusterset uno llamado development y uno llamado production
+Asignar el cluster local-cluster a development
+Asignar el cluster managed-cluster a production
 Configurar permisos para dos usuarios
+- peter - admin - production
+- jonh  - view - development
 
 Politica paara configurar LimitRange en un proyecto.
 ===============================================================================================

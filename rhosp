@@ -13,3 +13,4 @@
 - Validar la llave webkey
 - Crear el source para administrar el proyecto Engineering
 - Configurar IDM con un nuevo dominio.
+- Activar trace message y crear usuario rabbitmq, para leer los mensajes.

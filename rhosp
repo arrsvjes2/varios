@@ -1,4 +1,11 @@
 - Agregar un dispositivo nuevo /mnt/ring2 al swift
+ssh heat-admin@controller0
+sudo -i
+cd /var/lib/config-data/puppet-generated/swift/etc/swift
+swift-ring-builder object.builder
+swift-ring-builder object.builder add z1-172.24.4.1:6000/d2 100
+Repetir los mismos pasos para container.builder y account.builder
+
 - Agregar volumen manila
      Crear usuario para autenticarse
 - Activar trace en rabbitmq y crear un usuario que tenga permisos para leer.

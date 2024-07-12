@@ -1,4 +1,4 @@
-- Agregar un dispositivo nuevo /mnt/ring2 al swift
+- Agregar un dispositivo nuevo /mnt/ring2 al swift ***************************************
 ssh heat-admin@controller0
 sudo -i
 cd /var/lib/config-data/puppet-generated/swift/etc/swift
@@ -7,8 +7,11 @@ swift-ring-builder object.builder add z1-172.24.4.1:6000/d2 100
 Repetir los mismos pasos para container.builder y account.builder
 swift-ring-builder base_directory/object.builder rebalance
 
-- Agregar volumen manila
+- Agregar volumen manila ******************************************************************
      Crear usuario para autenticarse
+
+ manila type-create cephfstype false
+
 - Activar trace en rabbitmq y crear un usuario que tenga permisos para leer.
 - Desde el principio corregir el flavor m1.petite.
 - Personalizar una imagen.

@@ -5,6 +5,7 @@ cd /var/lib/config-data/puppet-generated/swift/etc/swift
 swift-ring-builder object.builder
 swift-ring-builder object.builder add z1-172.24.4.1:6000/d2 100
 Repetir los mismos pasos para container.builder y account.builder
+swift-ring-builder base_directory/object.builder rebalance
 
 - Agregar volumen manila
      Crear usuario para autenticarse

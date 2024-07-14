@@ -11,6 +11,7 @@ swift-ring-builder base_directory/object.builder rebalance
      Crear usuario para autenticarse
 
  manila type-create cephfstype false
+ manila create --name finance-share1 --share-type cephfstype cephfs 1
 
 - Activar trace en rabbitmq y crear un usuario que tenga permisos para leer.
 - Desde el principio corregir el flavor m1.petite.

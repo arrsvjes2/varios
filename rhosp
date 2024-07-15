@@ -12,6 +12,8 @@ swift-ring-builder base_directory/object.builder rebalance
 
  manila type-create cephfstype false
  manila create --name finance-share1 --share-type cephfstype cephfs 1
+ manila list
+ # Crear la instancia con una nic en la red de storage y la opcion --config-drive = true
 
 - Activar trace en rabbitmq y crear un usuario que tenga permisos para leer.
 - Desde el principio corregir el flavor m1.petite.

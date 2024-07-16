@@ -14,6 +14,16 @@ swift-ring-builder base_directory/object.builder rebalance
  manila create --name finance-share1 --share-type cephfstype cephfs 1
  manila list
  # Crear la instancia con una nic en la red de storage y la opcion --config-drive = true
+ ssh controller0
+ sudo -i
+ podman exec -it ceph-mon-controller0 /bin/bash
+ ceph --keyring=/etc/ceph/ceph.client.manila.keyring --name client.manila \
+ auth get-or-create client.cloud-user > /root/cloud-user.keyring
+ # cerrar la sesion en controller0
+ # Copiar los archivos cloud-user.keyring,/etc/ceph/ceph.conf desde el controller0 hacia la instancia creada.
+ manila access-allow \
+ finance-share1 cephx cloud-user
+
 
 - Activar trace en rabbitmq y crear un usuario que tenga permisos para leer.
 - Desde el principio corregir el flavor m1.petite.

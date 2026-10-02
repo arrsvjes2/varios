@@ -36,7 +36,7 @@ spec:
     spec:
       containers:
       - name: web
-        image: nginx:alpine
+        image: registry.ocp4.example.com:8443/ubi8/nginx-118:latest
         ports:
         - containerPort: 80
         volumeMounts:

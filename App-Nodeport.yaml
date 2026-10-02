@@ -1,0 +1,62 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: html-custom
+  namespace: demo-nodeport
+data:
+  index.html: |
+    <html>
+    <head><title>Hola LATAM - DO280</title></head>
+    <body style="font-family: sans-serif; text-align:center; margin-top:50px;">
+      <h1>¡Hola LATAM desde OpenShift con NodePort! 🚀</h1>
+      <h2>DO280 - OpenShift Administration II</h2>
+      <p>Si ves esto, el NodePort funciona.</p>
+      <p><b>Pod:</b> <span id="pod"></span></p>
+      <p><b>Node:</b> Accedido vía NodePort 30080</p>
+      <script>document.getElementById('pod').innerText = window.location.hostname || 'nginx pod'</script>
+    </body>
+    </html>
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hola-latam
+  namespace: demo-nodeport
+  labels:
+    app: hola-latam
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: hola-latam
+  template:
+    metadata:
+      labels:
+        app: hola-latam
+    spec:
+      containers:
+      - name: web
+        image: nginx:alpine
+        ports:
+        - containerPort: 80
+        volumeMounts:
+        - name: html
+          mountPath: /usr/share/nginx/html
+      volumes:
+      - name: html
+        configMap:
+          name: html-custom
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: hola-service
+  namespace: demo-nodeport
+spec:
+  type: NodePort
+  selector:
+    app: hola-latam
+  ports:
+  - port: 80
+    targetPort: 80
+    nodePort: 30080
